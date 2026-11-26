@@ -1,0 +1,11 @@
+description: Unknown product
+request:
+  method: GET
+  url: /api/catalog/products/missing
+response:
+  status: 404
+  headers:
+    Content-Type: application/json
+  body:
+    code: SLHD_CATALOG_00001
+    description: Producto no encontrado en catalogo

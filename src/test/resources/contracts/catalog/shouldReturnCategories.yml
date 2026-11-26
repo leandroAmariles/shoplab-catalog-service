@@ -1,0 +1,11 @@
+description: Categories in Portuguese and English
+request:
+  method: GET
+  url: /api/catalog/categories
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body:
+    - name: relogios_presentes
+      nameEn: watches_gifts

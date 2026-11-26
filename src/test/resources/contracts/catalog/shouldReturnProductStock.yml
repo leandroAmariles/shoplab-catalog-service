@@ -1,0 +1,14 @@
+description: Stock and price
+request:
+  method: GET
+  url: /api/catalog/products/a1/stock
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body:
+    productId: a1
+    referencePrice: 99.90
+    stock: 7
+    available: true
+    updatedAt: "2026-11-26T12:00:00Z"

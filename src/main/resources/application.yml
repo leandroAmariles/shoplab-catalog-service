@@ -4,16 +4,16 @@ server:
 
 spring:
   application:
-    name: ${SERVICE_NAME:template-service}
+    name: ${SERVICE_NAME:catalog-service}
   datasource:
-    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/shoplab}
-    username: ${POSTGRES_USER:shoplab}
-    password: ${POSTGRES_PASSWORD:change-me-local-only}
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/catalog}
+    username: ${POSTGRES_USER:catalog}
+    password: ${POSTGRES_PASSWORD:catalog}
   # One schema per service (ADR-0015), with its own history table.
   flyway:
-    schemas: ${SERVICE_SCHEMA:template}
-    default-schema: ${SERVICE_SCHEMA:template}
-    locations: classpath:db/migration/${SERVICE_SCHEMA:template}
+    schemas: ${SERVICE_SCHEMA:catalog}
+    default-schema: ${SERVICE_SCHEMA:catalog}
+    locations: classpath:db/migration/${SERVICE_SCHEMA:catalog}
   reactor:
     context-propagation: auto
 

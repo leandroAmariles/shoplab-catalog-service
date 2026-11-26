@@ -1,0 +1,17 @@
+description: Technical sheet of a product
+request:
+  method: GET
+  url: /api/catalog/products/a1
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body:
+    productId: a1
+    categoryName: relogios_presentes
+    nameLength: 40
+    descriptionLength: 287
+    photosCount: 1
+    referencePrice: 99.90
+    stock: 7
+    available: true
