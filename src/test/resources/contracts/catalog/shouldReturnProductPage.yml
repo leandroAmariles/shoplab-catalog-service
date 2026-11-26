@@ -1,0 +1,25 @@
+description: Page of products ordered by id (indexing of retrieval-service, LAB-34)
+request:
+  method: GET
+  url: /api/catalog/products?page=0&size=1
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body:
+    content:
+      - productId: a1
+        categoryName: relogios_presentes
+        categoryNameEn: watches_gifts
+        referencePrice: 99.90
+        stock: 7
+        weightG: 200
+        dimensions:
+          lengthCm: 16
+          heightCm: 10
+          widthCm: 14
+    page: 0
+    size: 1
+    totalElements: 2
+    totalPages: 2
+    last: false
