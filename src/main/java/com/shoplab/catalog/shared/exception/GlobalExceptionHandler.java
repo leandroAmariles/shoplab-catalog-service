@@ -3,6 +3,7 @@ package com.shoplab.catalog.shared.exception;
 import com.shoplab.catalog.shared.logging.SecureLogger;
 import com.shoplab.catalog.shared.model.ErrorDto;
 import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -40,11 +41,12 @@ public class GlobalExceptionHandler {
     /** Framework errors (unknown path, wrong method or media type) keep their status instead of becoming a 500. */
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity<ErrorDto> handleResponseStatusException(ResponseStatusException ex) {
-        ResponseCodeEnum code = switch (ex.getStatusCode().value()) {
-            case 404 -> ResponseCodeEnum.RESOURCE_NOT_FOUND;
-            case 405 -> ResponseCodeEnum.METHOD_NOT_ALLOWED;
-            default -> ResponseCodeEnum.INVALID_PARAMETERS;
-        };
+        ResponseCodeEnum code = ResponseCodeEnum.INVALID_PARAMETERS;
+        if (ex.getStatusCode().isSameCodeAs(HttpStatus.NOT_FOUND)) {
+            code = ResponseCodeEnum.RESOURCE_NOT_FOUND;
+        } else if (ex.getStatusCode().isSameCodeAs(HttpStatus.METHOD_NOT_ALLOWED)) {
+            code = ResponseCodeEnum.METHOD_NOT_ALLOWED;
+        }
         return ResponseEntity.status(ex.getStatusCode())
                 .body(new ErrorDto(code.getCode(), code.getDescription()));
     }
